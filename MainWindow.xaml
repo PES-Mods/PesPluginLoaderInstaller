@@ -1,0 +1,57 @@
+﻿<Window x:Class="PesPluginLoaderInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PesPluginLoaderInstaller"
+        xmlns:res="clr-namespace:PesPluginLoaderInstaller"
+        mc:Ignorable="d"
+        Title="Plugin Loader 5/6 Installer" ResizeMode="NoResize" Height="340" Width="760"
+        WindowStyle="None"
+        TextOptions.TextFormattingMode="Display"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <!-- White text with a soft dark shadow, like the icon labels on the Windows desktop -->
+        <Style TargetType="local:OutlinedTextBlock">
+            <Setter Property="Fill" Value="White"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="ShadowBrush" Value="Black"/>
+            <Setter Property="ShadowBlurRadius" Value="3"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="#395176" BorderThickness="1" Opacity="1">
+        <Border.Background>
+            <ImageBrush ImageSource="/Background.png" Opacity="1.0"/>
+        </Border.Background>
+        <Grid>
+            <Image Source="Logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Width="452" Margin="0,14,0,0" />
+            <local:OutlinedTextBlock x:Name="lblVersion" FontSize="16" Text="1.0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="665,22,0,0"/>
+            <local:OutlinedTextBlock x:Name="lblSelect" Text="{x:Static res:Resource.TEXT_SELECT}" TextAlignment="Right" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="63,85,0,0" Width="120"/>
+            <ComboBox x:Name="cbDirectory" IsEditable="True" Margin="192,81,0,0" FontSize="14" VerticalContentAlignment="Center" Padding="5,0" TextBoxBase.TextChanged="CbDirectory_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="393" />
+            <Button x:Name="btnBrowse" Content="{x:Static res:Resource.TEXT_BROWSE}" HorizontalAlignment="Left" Margin="590,81,0,0" FontSize="14" VerticalAlignment="Top" Width="85" Height="29" Click="BtnBrowseGameDir_Click"/>
+            <local:OutlinedTextBlock x:Name="tbErrorMessage" Text="{x:Static res:Resource.TEXT_ERROR_WRONG_FOLDER}" Fill="#FFD00000" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="218,114,0,0" Visibility="Hidden"/>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="198,137,0,0">
+                <CheckBox x:Name="chkAssetLoader" IsChecked="True" Content="{x:Static res:Resource.TEXT_INSTALL_ASSET_LOADER}"/>
+                <CheckBox x:Name="chkOtherPlugins" IsChecked="True" Content="{x:Static res:Resource.TEXT_INSTALL_OTHER_PLUGINS}"/>
+                <CheckBox x:Name="chkVsTemplate" IsChecked="True" IsEnabled="False" Content="{x:Static res:Resource.TEXT_INSTALL_VS_TEMPLATE}"/>
+                <CheckBox x:Name="chk4GBFix" IsChecked="True" IsEnabled="False" Content="{x:Static res:Resource.TEXT_APPLY_4GB_FIX}"/>
+            </StackPanel>
+            <Button x:Name="btnInstall" Content="{x:Static res:Resource.TEXT_INSTALL}" HorizontalAlignment="Left" Margin="320,282,0,0" VerticalAlignment="Top" Width="100" Height="32" FontSize="14" IsEnabled="False" Click="InstallClicked"/>
+            <Button x:Name="btnUninstall" Content="{x:Static res:Resource.TEXT_UNINSTALL}" HorizontalAlignment="Left" Margin="438,282,0,0" VerticalAlignment="Top" Width="100" Height="32" FontSize="14" IsEnabled="False" Click="UninstallClicked"/>
+            <Button x:Name="btnExit" Content="{x:Static res:Resource.TEXT_EXIT}" HorizontalAlignment="Left" Margin="586,282,0,0" VerticalAlignment="Top" Width="100" Height="32" FontSize="14" Click="ExitClicked"/>
+            <Image Source="logo_soccergaming.png" Width="20" Height="20" Margin="70,292,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <local:OutlinedTextBlock x:Name="linkSoccerGaming" Text="SoccerGaming Forums" FontSize="14" Cursor="Hand" Margin="96,291,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MouseLeftButtonDown="Link_MouseLeftButtonDown"/>
+        </Grid>
+    </Border>
+</Window>

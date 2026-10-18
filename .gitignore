@@ -1,0 +1,9 @@
+.vs/
+obj/
+bin/
+packages/
+*.exe
+*.dll
+*.pdb
+*.bar
+*.psd
